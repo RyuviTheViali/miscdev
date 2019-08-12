@@ -24,11 +24,16 @@ local function GetRecursive(tab,part)
 end
 
 function SearchPACParts(ply,cls,nam)
+	cls = cls or ""
 	nam = nam or ""
 	local parts = {}
 	local allparts = {}
 	for k,v in pairs(getplyproots(ply) or {}) do GetRecursive(allparts,v) end
 	for k,v in pairs(allparts) do
+		if cls == "" then
+			parts[#parts+1] = v
+			continue
+		end
 		if v.ClassName == cls then
 			if v.Name:find(nam) then
 				parts[#parts+1] = v
