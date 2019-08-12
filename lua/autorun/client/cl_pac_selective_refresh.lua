@@ -1,19 +1,38 @@
-local function GetRecursive(tab,part)
-	tab[#tab+1] = part
-	if part:HasChildren() then for k,v in pairs(part:GetChildren()) do GetRecursive(tab,v) end end
+local function getplyproots(p)
+	local ap = select(2,debug.getupvalue(pac.AddPart,1))
+	local roots = {}
+	local c = 0
+	for k,v in pairs(ap) do
+		if c >= 3000 then print("BAD") break end
+		if v.GetOwner and v:GetOwner() == p then
+			if v.GetParent and v:GetParent().ClassName == "NULL" then
+				roots[v.UniqueID] = v
+				c = c+1
+			end
+		end
+	end
+	return roots
 end
 
---HELLO
+local function GetRecursive(tab,part)
+	tab[#tab+1] = part
+	if part:HasChildren() then
+		for k,v in pairs(part:GetChildren()) do
+			GetRecursive(tab,v)
+		end
+	end
+end
 
 function SearchPACParts(ply,cls,nam)
-	nam,cls = nam or "",cls or ""
-	local parts,allparts = {},{}
-	for k,v in pairs(ply.pac_parts or {}) do GetRecursive(allparts,v) end
+	nam = nam or ""
+	local parts = {}
+	local allparts = {}
+	for k,v in pairs(getplyproots(ply) or {}) do GetRecursive(allparts,v) end
 	for k,v in pairs(allparts) do
-		if cls == "" then
-			parts[#parts+1] = v
-		else
-			if v.ClassName == cls then if v.Name:find(nam) then parts[#parts+1] = v end end
+		if v.ClassName == cls then
+			if v.Name:find(nam) then
+				parts[#parts+1] = v
+			end
 		end
 	end
 	return parts
