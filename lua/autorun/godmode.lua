@@ -2,15 +2,15 @@ local tag = "godmode"
 
 function FindMetaTable("Player"):GodEnable()
 	self:AddFlags(FL_GODMODE)
-	if CLIENT then
-		RunConsoleCommand("cl_godmode","1")
+	if SERVER and self.SetNetData then
+		self:SetNetData("GodMode",true)
 	end
 end
 
 function FindMetaTable("Player"):GodDisable()
 	self:RemoveFlags(FL_GODMODE)
-	if CLIENT then
-		RunConsoleCommand("cl_godmode","0")
+	if SERVER and self.SetNetData then
+		self:SetNetData("GodMode",false)
 	end
 end
 
