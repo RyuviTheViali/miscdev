@@ -20,8 +20,6 @@ if SERVER then
 
 	util.AddNetworkString(tag)
 
-	local function ChangeGodMode
-
 	hook.Add("PlayerSpawn", tag, function(ply)
 		local val = ply:GetInfoNum("cl_" .. tag, "1")
 		if val >= 1 then
