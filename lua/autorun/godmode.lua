@@ -17,7 +17,7 @@ function meta:GodDisable()
 end
 
 if CLIENT then
-	local convar = CreateClientConVar("cl_" .. tag, "1", true, true)
+	local convar = CreateClientConVar("cl_" .. tag, "0", true, true)
 
 	cvars.AddChangeCallback("cl_" .. tag, function(_, old, new)
 		if old == new then return end
@@ -37,7 +37,7 @@ if SERVER then
 	util.AddNetworkString(tag)
 
 	hook.Add("PlayerSpawn", tag, function(ply)
-		local val = ply:GetInfoNum("cl_" .. tag, "1")
+		local val = ply:GetInfoNum("cl_" .. tag, "0")
 		if val >= 1 then
 			ply:GodEnable()
 		else
