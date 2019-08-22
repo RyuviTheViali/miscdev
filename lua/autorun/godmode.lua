@@ -27,6 +27,7 @@ if SERVER then
 			ply:SendLua([[LocalPlayer():AddFlags(FL_GODMODE)]])
 		else
 			ply:GodDisable()
+			ply:SendLua([[LocalPlayer():RemoveFlags(FL_GODMODE)]])
 		end
 	end)
 
@@ -37,6 +38,7 @@ if SERVER then
 			ply:SendLua([[LocalPlayer():AddFlags(FL_GODMODE)]])
 		else
 			ply:GodDisable()
+			ply:SendLua([[LocalPlayer():RemoveFlags(FL_GODMODE)]])
 		end
 	end)
 
