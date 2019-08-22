@@ -24,8 +24,14 @@ if SERVER then
 		local val = ply:GetInfoNum("cl_" .. tag, "1")
 		if val >= 1 then
 			ply:GodEnable()
+			if ply.SetNetData then
+				ply:SetNetData("GodMode",true)
+			end
 		else
 			ply:GodDisable()
+			if ply.SetNetData then
+				ply:SetNetData("GodMode",false)
+			end
 		end
 	end)
 
@@ -33,8 +39,14 @@ if SERVER then
 		local god = net.ReadBool()
 		if god then
 			ply:GodEnable()
+			if ply.SetNetData then
+				ply:SetNetData("GodMode",true)
+			end
 		else
 			ply:GodDisable()
+			if ply.SetNetData then
+				ply:SetNetData("GodMode",false)
+			end
 		end
 	end)
 
