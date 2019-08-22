@@ -24,10 +24,8 @@ if SERVER then
 		local val = ply:GetInfoNum("cl_" .. tag, "1")
 		if val >= 1 then
 			ply:GodEnable()
-			ply:SendLua([[LocalPlayer():AddFlags(FL_GODMODE)]])
 		else
 			ply:GodDisable()
-			ply:SendLua([[LocalPlayer():RemoveFlags(FL_GODMODE)]])
 		end
 	end)
 
@@ -35,10 +33,8 @@ if SERVER then
 		local god = net.ReadBool()
 		if god then
 			ply:GodEnable()
-			ply:SendLua([[LocalPlayer():AddFlags(FL_GODMODE)]])
 		else
 			ply:GodDisable()
-			ply:SendLua([[LocalPlayer():RemoveFlags(FL_GODMODE)]])
 		end
 	end)
 
