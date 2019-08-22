@@ -1,5 +1,19 @@
 local tag = "godmode"
 
+function FindMetaTable("Player"):GodEnable()
+	self:AddFlags(FL_GODMODE)
+	if CLIENT then
+		RunConsoleCommand("cl_godmode","1")
+	end
+end
+
+function FindMetaTable("Player"):GodDisable()
+	self:RemoveFlags(FL_GODMODE)
+	if CLIENT then
+		RunConsoleCommand("cl_godmode","0")
+	end
+end
+
 if CLIENT then
 	local convar = CreateClientConVar("cl_" .. tag, "1", true, true)
 
@@ -24,14 +38,8 @@ if SERVER then
 		local val = ply:GetInfoNum("cl_" .. tag, "1")
 		if val >= 1 then
 			ply:GodEnable()
-			if ply.SetNetData then
-				ply:SetNetData("GodMode",true)
-			end
 		else
 			ply:GodDisable()
-			if ply.SetNetData then
-				ply:SetNetData("GodMode",false)
-			end
 		end
 	end)
 
@@ -39,14 +47,8 @@ if SERVER then
 		local god = net.ReadBool()
 		if god then
 			ply:GodEnable()
-			if ply.SetNetData then
-				ply:SetNetData("GodMode",true)
-			end
 		else
 			ply:GodDisable()
-			if ply.SetNetData then
-				ply:SetNetData("GodMode",false)
-			end
 		end
 	end)
 
