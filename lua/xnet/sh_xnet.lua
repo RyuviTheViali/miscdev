@@ -195,7 +195,7 @@ if CLIENT then
 	cretform["number"]   = function(s) return tostring(s) end
 	cretform["player"]   = function(s) return [[Entity(]]..s:EntIndex()..[[)]] end
 	cretform["boolean"]  = function(s) return tostring(s) end
-	cretform["function"] = function(s) return GLib.Lua.GetFunctionName(s) and GLib.Lua.GetFunctionName(s) or tostring(s) end
+	cretform["function"] = function(s) return GLib.Lua and GLib.Lua.GetFunctionName(s) and GLib.Lua.GetFunctionName(s) or tostring(s) end
 	cretform["table"]    = function(s) local tt = "{" for k,v in pairs(s) do tt = tt.."["..tostring(k).."]=("..CRetForm(v)..")," end return tostring(tt).."}" end
 	cretform["tval"]     = function(s) return cretform[type(s):lower()] and cretform[type(s):lower()](s) or tostring(s) end
 	
