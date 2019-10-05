@@ -148,7 +148,7 @@ if CLIENT then
 		pos = pos + pl:GetUp() * 8
 		pos = pos + pl:GetForward() * 4
 
-		if spi and spi.spheres[pl] then
+		if spi and spi.spheres[pl] and spi.spheres[pl]:IsValid() then
 			pos = spi.spheres[pl]:GetPos()+Vector(0,0,10)
 		end
 
