@@ -147,6 +147,11 @@ if CLIENT then
 		pos=pos or pl:GetShootPos()
 		pos = pos + pl:GetUp() * 8
 		pos = pos + pl:GetForward() * 4
+
+		if spi and spi.spheres[pl] then
+			pos = spi.spheres[pl]:GetPos()+Vector(0,0,10)
+		end
+
 		local x,y = 0,0
 
 		Colors.Border.a = alpha
