@@ -151,7 +151,7 @@ if CLIENT then
 		if spi and spi.spheres[pl] and spi.spheres[pl]:IsValid() then
 			pos = spi.spheres[pl]:GetPos()+Vector(0,0,10)
 		end
-
+		
 		local x,y = 0,0
 
 		Colors.Border.a = alpha
@@ -182,10 +182,8 @@ if CLIENT then
 
 		local scale = 1 
 
-		local shouldhidecoh = msg:sub(2,4) == "pm "
-
-		if shouldhidecoh then
-			msg = ""
+		if msg:sub(2,4) == "pm " then
+			msg == ""
 		end
 
 		if msg == "" then
