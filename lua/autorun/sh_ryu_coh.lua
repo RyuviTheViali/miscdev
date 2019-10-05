@@ -183,7 +183,7 @@ if CLIENT then
 		local scale = 1 
 
 		if msg:sub(2,4) == "pm " then
-			msg == ""
+			msg = ""
 		end
 
 		if msg == "" then
